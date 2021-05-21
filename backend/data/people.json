@@ -1,0 +1,44 @@
+[
+	{
+		"id": 0,
+		"name": "Shruti Panjwani",
+		"age": 16,
+		"YOB": 2004,
+		"email": "shrutipanjwani13@gmail.com"
+	},
+	{
+		"id": 1,
+		"name": "SP",
+		"age": 17,
+		"YOB": 2004,
+		"email": "sp@gmail.com"
+	},
+	{
+		"id": 2,
+		"name": "Shreya",
+		"age": 17,
+		"YOB": 2003,
+		"email": "shreya@gmail.com"
+	},
+	{
+		"id": 3,
+		"name": "Pratham",
+		"age": 15,
+		"YOB": 2005,
+		"email": "pratham04@gmail.com"
+	},
+	{
+		"id": 4,
+		"name": "John",
+		"age": 20,
+		"YOB": 2000,
+		"email": "johnhero@gmail.com"
+	},
+	{
+		"id": 5,
+		"name": "Johnny",
+		"age": 21,
+		"YOB": 2000,
+		"email": "24johnny@gmail.com"
+	}
+]
