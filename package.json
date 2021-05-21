@@ -13,10 +13,12 @@
 	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.21.1",
+		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
 		"dotenv": "^9.0.2",
 		"express": "^4.17.1",
-		"mongoose": "^5.12.9"
+		"mongoose": "^5.12.9",
+		"serve-favicon": "^2.5.0"
 	},
 	"devDependencies": {
 		"concurrently": "^6.1.0",
