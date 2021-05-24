@@ -1,12 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const Contact = require("./models/contactModel");
-var bodyParser = require("body-parser");
 const connectDB = require("./config/db.js");
 const data = require("./data/people.json");
 const favicon = require("serve-favicon");
 const path = require("path");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const Contact = require("./models/contactModel");
 
 dotenv.config();
 
@@ -16,19 +16,15 @@ connectDB();
 
 const PORT = process.env.PORT || 5000;
 
-//Init middleware
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// parse application/json
-app.use(bodyParser.json());
-
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 app.use(cors());
 
 app.use(express.static(__dirname + "/public"));
 app.use("/images", express.static(__dirname + "/images"));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // CRUD Operations Contact Routes
 
@@ -96,7 +92,7 @@ app.route("/contact/:contactID").put((req, res) => {
 //@method delete
 //@access public
 app.route("/contact/:contactID").delete((req, res) => {
-	Contact.remove({ _id: req.params.contactID }, (err, message) => {
+	Contact.deleteOne({ _id: req.params.contactID }, (err, message) => {
 		if (err) {
 			res.send(err);
 		}

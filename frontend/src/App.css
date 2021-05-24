@@ -1,19 +1,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
 * {
 	font-family: "Poppins", sans-serif;
 }
 
-ul {
+i {
+	font-family: "Poppins", sans-serif;
+	font-size: 17px;
+	cursor: pointer;
+}
+
+.profile-list {
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
 }
 
-li {
+.profile-list li {
 	background: #333;
 	width: 40%;
 	padding: 10px;
 	margin: 10px;
 	color: #fff;
+}
+
+.contacts-container {
+	width: 90%;
+	margin: auto;
+}
+
+.contact-list {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+}
+
+.contact-list li {
+	width: 30%;
+	background: #6cafa4;
+	color: #fff;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	display: flex;
+	cursor: pointer;
+}
+
+.contact-list .left {
+	width: 90%;
+}
+
+@media screen and (max-width: 768px) {
+	.contact-list li {
+		width: 100%;
+		margin-left: -2rem;
+		flex-direction: column;
+	}
+	.contact-list .right {
+		width: 100%;
+	}
+	.contacts-container {
+		width: 100%;
+	}
 }

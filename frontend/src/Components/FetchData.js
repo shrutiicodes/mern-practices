@@ -29,7 +29,7 @@ function FetchData() {
 
 	return (
 		<>
-			<ul>
+			<ul className="profile-list">
 				{profiles.length > 0 ? (
 					profiles.map((profile) => (
 						<li key={profile.id}>
