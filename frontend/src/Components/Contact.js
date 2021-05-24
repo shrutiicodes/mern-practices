@@ -154,7 +154,6 @@ function Contact() {
 	return (
 		<>
 			<form className="contact-form" onSubmit={(e) => onSubmit(e)}>
-				<label htmlFor="firstName">First Name: </label>
 				<input
 					type="text"
 					id="firstName"
@@ -165,7 +164,6 @@ function Contact() {
 					required
 				/>
 				<br />
-				<label htmlFor="lastName">Last Name: </label>
 				<input
 					type="text"
 					id="lastName"
@@ -176,7 +174,6 @@ function Contact() {
 					required
 				/>
 				<br />
-				<label htmlFor="email">Email: </label>
 				<input
 					type="email"
 					id="email"
@@ -187,7 +184,6 @@ function Contact() {
 					required
 				/>
 				<br />
-				<label htmlFor="company">company: </label>
 				<input
 					type="text"
 					id="company"
@@ -197,7 +193,6 @@ function Contact() {
 					onChange={(e) => onChange(e)}
 				/>
 				<br />
-				<label htmlFor="phone">Phone: </label>
 				<input
 					type="tel"
 					id="phone"
@@ -225,7 +220,6 @@ function Contact() {
 							style={{ textAlign: "center" }}
 						>
 							<form className="contact-form">
-								<label htmlFor="firstName">First Name: </label>
 								<input
 									type="text"
 									id="firstName"
@@ -236,7 +230,6 @@ function Contact() {
 									required
 								/>
 								<br />
-								<label htmlFor="lastName">Last Name: </label>
 								<input
 									type="text"
 									id="lastName"
@@ -247,7 +240,6 @@ function Contact() {
 									required
 								/>
 								<br />
-								<label htmlFor="email">Email: </label>
 								<input
 									type="email"
 									id="email"
@@ -258,7 +250,6 @@ function Contact() {
 									required
 								/>
 								<br />
-								<label htmlFor="company">company: </label>
 								<input
 									type="text"
 									id="company"
@@ -268,7 +259,6 @@ function Contact() {
 									onChange={handleInputChange}
 								/>
 								<br />
-								<label htmlFor="phone">Phone: </label>
 								<input
 									type="tel"
 									id="phone"
@@ -279,13 +269,25 @@ function Contact() {
 									required
 								/>
 								<br />
-								<Button variant="outlined" onClick={() => handleEdit(id)}>
+								<Button
+									className="btn"
+									variant="outlined"
+									onClick={() => handleEdit(id)}
+								>
 									<Typography className="text-primary">Save</Typography>
 								</Button>
-								<Button variant="outlined" onClick={() => handleDelete(id)}>
+								<Button
+									className="btn"
+									variant="outlined"
+									onClick={() => handleDelete(id)}
+								>
 									<Typography className="text-primary">Delete</Typography>
 								</Button>
-								<Button variant="outlined" onClick={handleClose}>
+								<Button
+									className="btn"
+									variant="outlined"
+									onClick={handleClose}
+								>
 									<Typography className="text-primary">Cancel</Typography>
 								</Button>
 							</form>

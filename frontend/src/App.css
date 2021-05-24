@@ -25,6 +25,8 @@ i {
 	color: #fff;
 }
 
+/* Contact List CRUD*/
+
 .contacts-container {
 	width: 90%;
 	margin: auto;
@@ -51,6 +53,43 @@ i {
 	width: 90%;
 }
 
+.contact-form {
+	width: 90%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.contact-form input {
+	padding: 10px;
+	margin: 10px;
+	width: 50%;
+	outline: none;
+	font-size: 16px;
+}
+
+.contact-form button,
+.btn {
+	width: 52%;
+	padding: 10px;
+	margin: 10px;
+	background: #6cafa4;
+	color: #fff;
+	outline: none;
+	border: none;
+	border-radius: 8px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.contact-form button:hover,
+.btn:hover {
+	background: #fff;
+	border: 2px solid #6cafa4;
+	color: #6cafa4;
+}
+
 @media screen and (max-width: 768px) {
 	.contact-list li {
 		width: 100%;
@@ -62,5 +101,15 @@ i {
 	}
 	.contacts-container {
 		width: 100%;
+	}
+	.contact-form {
+		width: 100%;
+	}
+	.contact-form input {
+		width: 90%;
+		margin: 5px;
+	}
+	.contact-form button {
+		width: 90%;
 	}
 }
