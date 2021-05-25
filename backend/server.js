@@ -27,7 +27,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/users", require("./routes/auth"));
-app.use("/auth", require("./routes/auth"));
 
 // CRUD Operations Contact Routes
 

@@ -38,18 +38,9 @@ router.post(
 			if (user) {
 				res.status(400).json({ errors: [{ msg: "User already exists" }] });
 			}
-
-			// Get users gravatar
-			const avatar = gravatar.url(email, {
-				s: "200",
-				r: "pg",
-				d: "mm",
-			});
-
 			user = new User({
 				name,
 				email,
-				avatar,
 				password,
 			});
 
@@ -78,10 +69,10 @@ router.post(
 	}
 );
 
-// @route   GET /auth
+// @route   GET /users/auth
 // @desc    Get user by token/ Loading user
 // @access  Private
-router.get("/", auth, async (req, res) => {
+router.get("/auth", auth, async (req, res) => {
 	try {
 		const user = await User.findById(req.user.id).select("-password");
 		res.json(user);
@@ -91,11 +82,11 @@ router.get("/", auth, async (req, res) => {
 	}
 });
 
-// @route   POST /auth
+// @route   POST /users/auth
 // @desc    Authentication user & get token/ Login user
 // @access  Public
 router.post(
-	"/",
+	"/auth",
 	[
 		check("email", "Please include a valid email").isEmail(),
 		check("password", "Password is required").exists(),

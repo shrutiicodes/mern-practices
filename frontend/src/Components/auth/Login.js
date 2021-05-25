@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+import Alert from "../layout/Alert";
 
 const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const Login = ({ login, isAuthenticated }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
+
 		login(email, password);
 	};
 
@@ -26,11 +28,13 @@ const Login = ({ login, isAuthenticated }) => {
 	}
 
 	return (
-		<Fragment>
-			<h1 className="large text-primary">Sign In</h1>
+		<div className="login-form">
+			<h1 className="heading">Sign In</h1>
 			<p className="lead">
 				<i className="fas fa-user"></i> Sign Into Your Account
 			</p>
+			<Alert />
+			<br />
 			<form className="form" onSubmit={(e) => onSubmit(e)}>
 				<div className="form-group">
 					<input
@@ -53,12 +57,12 @@ const Login = ({ login, isAuthenticated }) => {
 						required
 					/>
 				</div>
-				<input type="submit" className="btn btn-primary" value="Login" />
+				<input type="submit" className="btn" value="Login" />
 			</form>
-			<p className="my-1">
+			<p className="link">
 				Don't have an account? <Link to="/register">Sign Up</Link>
 			</p>
-		</Fragment>
+		</div>
 	);
 };
 

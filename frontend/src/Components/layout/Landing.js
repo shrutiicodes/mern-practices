@@ -12,17 +12,14 @@ const Landing = ({ isAuthenticated }) => {
 		<section className="landing">
 			<div className="dark-overlay">
 				<div className="landing-inner">
-					<h1 className="x-large">Developer Cafe</h1>
-					<p className="lead">
-						<h6>Social Networking Site</h6>
-						Create a developer profile/portfolio, share posts and get help from
-						other developers
-					</p>
+					<h1>MERN Project</h1>
+					<p>Register, Login &amp; Logout Functionality with MERN</p>
+					<br />
 					<div className="buttons">
-						<Link to="/register" className="btn btn-primary">
+						<Link to="/register" className="btn">
 							Sign Up
 						</Link>
-						<Link to="/login" className="btn btn-light">
+						<Link to="/login" className="btn">
 							Login
 						</Link>
 					</div>

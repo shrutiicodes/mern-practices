@@ -6,7 +6,7 @@ import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 	const authLinks = (
-		<ul>
+		<ul className="nav-links">
 			<li>
 				<Link to="/dashboard">
 					<i className="fas fa-user"></i>{" "}
@@ -14,15 +14,15 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 				</Link>
 			</li>
 			<li>
-				<a onClick={logout} href="#!">
+				<Link onClick={logout} to="/" replace>
 					<i className="fas fa-sign-out-alt"></i>{" "}
-					<span className="hide-sm">Logout</span>
-				</a>
+					<span className="hide-sm"> &nbsp;Logout</span>
+				</Link>
 			</li>
 		</ul>
 	);
 	const guestLinks = (
-		<ul>
+		<ul className="nav-links">
 			<li>
 				<Link to="/register">Register</Link>
 			</li>
@@ -35,9 +35,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 	return (
 		<nav className="navbar bg-dark">
 			<h1>
-				<Link to="/">
-					<i className="fas fa-code"> THE NAV</i>
-				</Link>
+				<Link to="/">HOME</Link>
 			</h1>
 			{!loading && (
 				<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
+import Alert from "../layout/Alert";
+import { setAlert } from "../../actions/alert";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
@@ -34,11 +35,13 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 	}
 
 	return (
-		<Fragment>
-			<h1 className="large text-primary">Sign Up</h1>
+		<div className="register-form">
+			<h1 className="heading">Sign Up</h1>
 			<p className="lead">
 				<i className="fas fa-user"></i> Create Your Account
 			</p>
+			<Alert />
+			<br />
 			<form className="form" onSubmit={(e) => onSubmit(e)}>
 				<div className="form-group">
 					<input
@@ -80,10 +83,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 				</div>
 				<input type="submit" className="btn btn-primary" value="Register" />
 			</form>
-			<p className="my-1">
+			<p className="link">
 				Already have an account? <Link to="/login">Sign In</Link>
 			</p>
-		</Fragment>
+		</div>
 	);
 };
 

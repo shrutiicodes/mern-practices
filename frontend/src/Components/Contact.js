@@ -6,7 +6,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 
-function Contact() {
+const Contact = () => {
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
@@ -17,29 +17,26 @@ function Contact() {
 
 	const { firstName, lastName, email, company, phone } = formData;
 
-	const onChange = (e) =>
+	const onChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
 
 	const onSubmit = async (e) => {
-		// console.log("Form data", e);
 		e.preventDefault();
-
-		const newUser = {
+		const newContact = {
 			firstName: firstName,
 			lastName: lastName,
-			email: email.toLowerCase(),
+			email: email,
 			company: company,
 			phone: phone,
 		};
-
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
 			},
 		};
-
 		try {
-			const body = JSON.stringify(newUser);
+			const body = JSON.stringify(newContact);
 			await axios.post("/contact", body, config);
 			setFormData({
 				firstName: "",
@@ -63,12 +60,17 @@ function Contact() {
 			},
 		};
 		try {
-			const res = await axios.get("http://localhost:5000/contact", config);
+			const res = await axios.get("/contact", config);
 			setContacts(res.data);
 		} catch (err) {
 			console.error("error", err);
 		}
 	};
+
+	useEffect(() => {
+		getAllContacts();
+	}, []);
+
 	const [currentContact, setCurrentContact] = useState({});
 	const [id, setId] = useState("");
 
@@ -79,10 +81,7 @@ function Contact() {
 			},
 		};
 		try {
-			const res = await axios.get(
-				`http://localhost:5000/contact/${id}`,
-				config
-			);
+			const res = await axios.get(`/contact/${id}`, config);
 			setCurrentContact(res.data);
 		} catch (err) {
 			console.error("error", err);
@@ -90,20 +89,8 @@ function Contact() {
 	};
 
 	useEffect(() => {
-		getAllContacts();
-	}, []);
-
-	useEffect(() => {
 		getContactById(id);
 	}, [id]);
-
-	const handleInputChange = (event) => {
-		// const { name, value } = event.target;
-		setCurrentContact({
-			...currentContact,
-			[event.target.name]: event.target.value,
-		});
-	};
 
 	const [open, setOpen] = useState(false);
 
@@ -114,6 +101,13 @@ function Contact() {
 	function handleClickOpen() {
 		setOpen(true);
 	}
+
+	const handleInputChange = (event) => {
+		setCurrentContact({
+			...currentContact,
+			[event.target.name]: event.target.value,
+		});
+	};
 
 	const handleEdit = async (id) => {
 		const config = {
@@ -156,59 +150,52 @@ function Contact() {
 			<form className="contact-form" onSubmit={(e) => onSubmit(e)}>
 				<input
 					type="text"
-					id="firstName"
 					name="firstName"
 					value={firstName}
-					placeholder="Enter your First Name"
+					placeholder="Enter your first name"
 					onChange={(e) => onChange(e)}
 					required
-				/>
+				></input>
 				<br />
 				<input
 					type="text"
-					id="lastName"
 					name="lastName"
 					value={lastName}
-					placeholder="Enter your Last Name"
+					placeholder="Enter your last name"
 					onChange={(e) => onChange(e)}
 					required
-				/>
+				></input>
 				<br />
 				<input
 					type="email"
-					id="email"
 					name="email"
 					value={email}
-					placeholder="Enter your Email"
+					placeholder="Enter your email"
 					onChange={(e) => onChange(e)}
 					required
-				/>
+				></input>
 				<br />
 				<input
 					type="text"
-					id="company"
 					name="company"
 					value={company}
-					placeholder="Enter your company Name"
+					placeholder="Enter your company name"
 					onChange={(e) => onChange(e)}
-				/>
+					required
+				></input>
 				<br />
 				<input
 					type="tel"
-					id="phone"
 					name="phone"
 					value={phone}
-					placeholder="Enter your Phone Number"
+					placeholder="Enter your phone no."
 					onChange={(e) => onChange(e)}
 					required
-				/>
-				<br />
-				<button type="submit">Add New Contact</button>
+				></input>
+				<button type="submit">Add new Contact</button>
 			</form>
-
 			<div className="contacts-container">
 				<h1 style={{ textAlign: "center" }}>Contact List</h1>
-
 				<Dialog
 					open={open}
 					onClose={handleClose}
@@ -222,72 +209,55 @@ function Contact() {
 							<form className="contact-form">
 								<input
 									type="text"
-									id="firstName"
 									name="firstName"
 									value={currentContact.firstName}
-									placeholder="Enter your First Name"
+									placeholder="Enter your first name"
 									onChange={handleInputChange}
 									required
-								/>
+								></input>
 								<br />
 								<input
 									type="text"
-									id="lastName"
 									name="lastName"
 									value={currentContact.lastName}
-									placeholder="Enter your Last Name"
+									placeholder="Enter your last name"
 									onChange={handleInputChange}
 									required
-								/>
+								></input>
 								<br />
 								<input
 									type="email"
-									id="email"
 									name="email"
 									value={currentContact.email}
-									placeholder="Enter your Email"
+									placeholder="Enter your email"
 									onChange={handleInputChange}
 									required
-								/>
+								></input>
 								<br />
 								<input
 									type="text"
-									id="company"
 									name="company"
 									value={currentContact.company}
-									placeholder="Enter your company Name"
+									placeholder="Enter your company name"
 									onChange={handleInputChange}
-								/>
+									required
+								></input>
 								<br />
 								<input
 									type="tel"
-									id="phone"
 									name="phone"
 									value={currentContact.phone}
-									placeholder="Enter your Phone Number"
+									placeholder="Enter your phone no."
 									onChange={handleInputChange}
 									required
-								/>
-								<br />
-								<Button
-									className="btn"
-									variant="outlined"
-									onClick={() => handleEdit(id)}
-								>
+								></input>
+								<Button className="btn" onClick={() => handleEdit(id)}>
 									<Typography className="text-primary">Save</Typography>
 								</Button>
-								<Button
-									className="btn"
-									variant="outlined"
-									onClick={() => handleDelete(id)}
-								>
+								<Button className="btn" onClick={() => handleDelete(id)}>
 									<Typography className="text-primary">Delete</Typography>
 								</Button>
-								<Button
-									className="btn"
-									variant="outlined"
-									onClick={handleClose}
-								>
+								<Button className="btn" onClick={() => handleClose()}>
 									<Typography className="text-primary">Cancel</Typography>
 								</Button>
 							</form>
@@ -301,8 +271,7 @@ function Contact() {
 								<div className="left" onClick={() => setId(contact._id)}>
 									<p>
 										{contact.firstName}
-										&nbsp;
-										{contact.lastName}
+										&nbsp;{contact.lastName}
 									</p>
 									<p>{contact.email}</p>
 									<p>Works at {contact.company}</p>
@@ -312,13 +281,13 @@ function Contact() {
 						))
 					) : (
 						<h1 style={{ textAlign: "center", width: "90%", margin: "auto" }}>
-							No contacts found
+							No Contacts Found
 						</h1>
 					)}
 				</ul>
 			</div>
 		</>
 	);
-}
+};
 
 export default Contact;
